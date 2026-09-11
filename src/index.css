@@ -7,17 +7,18 @@
   --light-blue: #f5f5ff;
   --white: #ffffff;
   --light-gray: #cacaca;
+  --disabled: #f0eff8;
   --text: #221d54;
 
-  --color-1: #B744B8;
+  --color-1: #c73cc9;
   --color-2: #B767FD;
   --color-3: #6a8afd;
   --color-4: #56aef7;
   --color-5: #49cfea;
   --color-6: #6fdec9;
   --color-7: #78127a;
-  --color-8: #551d85;
-  --color-9: #1738b3;
+  --color-8: #450f75;
+  --color-9: #142d84;
   --color-10: #0a51bb;
   --color-11: #0067bb;
   --color-12: #03819a;
@@ -84,6 +85,7 @@ h1 {
     font-size: 36px;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
@@ -92,6 +94,11 @@ h2 {
     font-size: 20px;
   }
 }
+
+h3 {
+  font-weight: 600;
+}
+
 p {
   margin: 0;
 }

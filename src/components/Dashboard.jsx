@@ -5,8 +5,7 @@ import {
 } from "../data/data.jsx";
 
 import YearlyDistribution from "./YearlyDistribution.jsx";
-import ItemDistribution from "./ItemDistribution.jsx";
-import OrganizationBreakdown from "./OrganizationBreakdown.jsx";
+import MonthDistribution from "./MonthDistribution.jsx";
 
 export default function Dashboard() {
     const [yearIndex, setYearIndex] = useState(
@@ -89,64 +88,60 @@ export default function Dashboard() {
                     onClick={goToPreviousYear}
                     disabled={yearIndex === 0}
                 >
-                    {"<"}
+                    <span> {"<"} </span>
                 </button>
-                <button className="flex-1"> {currentYearData.year} </button>
+                <div className="buttonStyle flex-1">
+                    <div
+                        style={{
+                            fontSize: 40,
+                            fontWeight: 300
+                        }}
+                    >
+                        MDAFCE Impact Tracker
+                    </div>
+                    {currentYearData.year}
+                </div>
                 <button
                     className="w-[100px]"
                     onClick={goToNextYear}
                     disabled={yearIndex === distributionData.length - 1}
                 >
-                    {">"}
+                    <span> {">"} </span>
                 </button>
             </div>
 
             <YearlyDistribution currentYearData={currentYearData} />
 
             {/* TOGGLE MONTH */}
-            <div className="flex items-center justify-center gap-2 w-full">
+            <div className="flex items-stretch justify-center gap-2 w-full">
                 <button
                     className="w-[100px]"
                     onClick={goToPreviousMonth}
                     disabled={monthIndex === 0}
                 >
-                    {"<"}
+                    <span>{ "<"} </span>
                 </button>
-                <button className="flex-1"> {`${currentMonthData.month} Distribution`} </button>
+                <div className="buttonStyle flex-1">
+                    <div
+                        style={{
+                            fontSize: 40,
+                            fontWeight: 300
+                        }}
+                    >
+                        MDAFCE Impact Tracker
+                    </div>
+                    {`${currentMonthData.month} Distribution`}
+                </div>
                 <button
                     className="w-[100px]"
                     onClick={goToNextMonth}
-                    disabled={monthIndex === distributionData.length - 1}
+                    disabled={monthIndex === currentYearData.months.length - 1}
                 >
-                    {">"}
+                    <span> {">"} </span>
                 </button>
             </div>
 
-            {/* MONTH STATISTICS */}
-            <div className="flex gap-2">
-                <container className="flex-1">
-                    <div className="flex flex-col h-full p-3 gap-3">
-                        <div className="statistic"> {currentMonthData.participants} </div>
-                        <h2 className="flex-1 flex items-center"> Participants </h2>
-                    </div>
-                </container>
-                <container className="flex-1">
-                    <div className="flex flex-col h-full p-3 gap-3">
-                        <div className="statistic"> {currentMonthData.students} </div>
-                        <h2 className="flex-1 flex items-center"> Number of students </h2>
-                    </div>
-                </container>
-                <container className="flex-1">
-                    <div className="flex flex-col h-full p-3 gap-3">
-                        <div className="statistic"> {currentMonthData.sslHours} </div>
-                        <h2 className="flex-1 flex items-center"> SSL Hours awarded </h2>
-                    </div>
-                </container>
-            </div>
-
-            <ItemDistribution currentMonthData={currentMonthData} />
-
-            <OrganizationBreakdown currentMonthData={currentMonthData} />
+            <MonthDistribution currentMonthData={currentMonthData} />
 
         </div>
     )
