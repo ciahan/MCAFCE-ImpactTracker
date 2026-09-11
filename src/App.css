@@ -2,8 +2,17 @@
 
 container {
   background: var(--light-blue);
-  border-radius: 24px;
-  border: 1px solid var(--white);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex;
+}
+
+containerWithTabs {
+  background: var(--light-blue);
+  border-radius: 0 10px 10px 10px;
 
   display: flex;
   flex-direction: column;
@@ -15,13 +24,23 @@ tab {
   padding: 0.75rem;
   width: 100%;
 
-  font-size: 24px;
+  font-size: 26px;
+}
+
+.chartTab {
+  background: var(--light-gray);
+  font-size: 16px;
+  padding: 10px 50px 5px 50px;
+  border-radius: 10px 10px 0 0;
+}
+
+.chartTab.selected {
+  background: var(--light-blue);
 }
 
 button, .button {
   background: var(--light-blue);
-  border: 1px solid var(--white);
-  border-radius: 32px;
+  border-radius: 10px;
   padding: 1rem;
 
   font-size: 56px;

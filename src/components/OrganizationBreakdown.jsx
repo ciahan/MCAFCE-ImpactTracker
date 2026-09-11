@@ -1,5 +1,3 @@
-import '../App.css'
-
 import {
     PieChart,
     Pie,

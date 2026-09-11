@@ -1,25 +1,27 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
-  --blue: #e2e2ff;
+  --blue: #dfe1ff;
+  --dark-blue: #5645a9;
   --light-blue: #f5f5ff;
   --white: #ffffff;
   --light-gray: #cacaca;
-  --text: #130921;
+  --text: #221d54;
 
-  --color-1: #ff7777;
-  --color-2: #f18a1b;
-  --color-3: #d7b728;
-  --color-4: #6ee03d;
-  --color-5: #00e5ff;
-  --color-6: #007bff;
-  --color-7: #0004ff;
-  --color-8: #9000ff;
-  --color-9: #ff00fb;
-  --color-10: #000000;
-  --color-11: #464646;
-  --color-12: #818181;
-  --color-13: #bfbfbf;
+  --color-1: #B744B8;
+  --color-2: #B767FD;
+  --color-3: #6a8afd;
+  --color-4: #56aef7;
+  --color-5: #49cfea;
+  --color-6: #6fdec9;
+  --color-7: #78127a;
+  --color-8: #551d85;
+  --color-9: #1738b3;
+  --color-10: #0a51bb;
+  --color-11: #0067bb;
+  --color-12: #03819a;
+  --color-13: #009a7e;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -36,8 +38,15 @@
   }
 }
 
+.inter-tight {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 * {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Inter Tight", sans-serif;
 }
 
 body {
@@ -54,6 +63,12 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+.statistic {
+  font-weight: 600;
+  font-size: 55px;
+  color: var(--dark-blue);
 }
 
 h1,

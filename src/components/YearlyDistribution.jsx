@@ -1,4 +1,4 @@
-import '../App.css'
+import { useState } from "react";
 
 import {
     BarChart,
@@ -18,7 +18,9 @@ import {
 } from "../data/data.jsx";
 
 export default function YearlyDistribution({ currentYearData }) {
-    const barChartData = currentYearData.months.map((currentMonthData) => {
+    const [chartType, setChartType] = useState("line");
+
+    const chartData = currentYearData.months.map((currentMonthData) => {
         const monthChartData = {
             month: currentMonthData.month,
         };
@@ -27,17 +29,6 @@ export default function YearlyDistribution({ currentYearData }) {
         });
         return monthChartData;
     });
-
-    // this is the exact same as barChartData idk if i'll end up needing this?
-    const lineChartData = currentYearData.months.map((currentMonthData) => {
-        const monthLineData = {
-            month: currentMonthData.month,
-        };
-        currentMonthData.production.forEach((donation) => {
-            monthLineData[donation.item] = donation.num;
-        });
-        return monthLineData;
-    })
 
     // a list of only the items that show up at least once on the production list of any month
     const yearlyItems = items
@@ -70,8 +61,8 @@ export default function YearlyDistribution({ currentYearData }) {
                     .map((item) => (
                         <container className="flex-1 p-3" key={item.id}>
                             <div className="flex flex-col gap-2">
+                                <div className="statistic"> {item.totalNum} </div>
                                 <h2 className="flex-1"> {item.name} </h2>
-                                <h1> {item.totalNum} </h1>
                             </div>
                         </container>
                     ))
@@ -80,86 +71,123 @@ export default function YearlyDistribution({ currentYearData }) {
             <container>
                 <tab> Yearly Donation Trends </tab>
             </container>
-            <div className="flex w-full gap-3">
-                <container className="flex-1 p-4 gap-4">
-                    <ResponsiveContainer className="chart" width="100%" height={400}>
-                        <LineChart
-                            data={lineChartData}
-                            margin={{
-                                top: 0,
-                                right: 30,
-                                left: 0,
-                                bottom: 20,
-                            }}
-                        >
-                            <div>
-                                <XAxis
-                                    dataKey="month"
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <YAxis
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <CartesianGrid
-                                    stroke="var(--blue)"
-                                    strokeDasharray="6 6"
-                                />
+            <div>
+                <div className="flex w-full gap-3">
+                    <div className="w-full">
+                        <div className="w-full flex justify-start">
+                            <button
+                                onClick={() => setChartType("line")}
+                                className={`chartTab ${chartType === "line" ? "selected" : ""}`}
+                            >
+                                <p> Line Chart </p>
+                            </button>
+                            <button
+                                onClick={() => setChartType("bar")}
+                                className={`chartTab ${chartType === "bar" ? "selected" : ""}`}
+                            >
+                                Bar Chart
+                            </button>
+                        </div>
+                        {chartType === "line" ? (
+                            <containerWithTabs className="w-full">
+                                <ResponsiveContainer className="chart" width="100%" height={420}>
+                                    <LineChart
+                                        data={chartData}
+                                        margin={{
+                                            top: 30,
+                                            right: 30,
+                                            left: 10,
+                                            bottom: 20,
+                                        }}
+                                    >
+                                        <div>
+                                            <XAxis
+                                                dataKey="month"
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={{ fill: "var(--text)" }}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <YAxis
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={{ fill: "var(--text)" }}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <CartesianGrid
+                                                stroke="var(--blue)"
+                                                strokeDasharray="6 6"
+                                            />
 
-                                <Tooltip />
+                                            <Tooltip />
 
-                                {yearlyItems.map((item) => (
-                                    <Line 
-                                        key={item.id}
-                                        type="monotone"
-                                        dataKey={item.id}
-                                        name={item.name}
-                                        stroke={item.color}
-                                    />
-                                ))}
-                            </div>
-                        </LineChart>
-                    </ResponsiveContainer>
-                </container>
-                {/* LEGEND */}
-                <container className="w-[160px] p-6">
-                    <div className="flex flex-col gap-4 w-full">
-                        {yearlyItems.map((item) => (
-                            <div key={item.id} className="flex gap-3">
-                                <legendicon
-                                    style={{ backgroundColor: item.color }}
-                                />
-                                <div className="flex-1 text-left"> {item.name} </div> 
-                            </div>
-                        ))}
+                                            {yearlyItems.map((item) => (
+                                                <Line 
+                                                    key={item.id}
+                                                    type="monotone"
+                                                    dataKey={item.id}
+                                                    name={item.name}
+                                                    stroke={item.color}
+                                                />
+                                            ))}
+                                        </div>
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </containerWithTabs>
+                        ) : (
+                            <containerWithTabs className="w-full">
+                                <ResponsiveContainer className="chart" width="100%" height={420}>
+                                    <BarChart
+                                        data={chartData}
+                                        margin={{
+                                            top: 30,
+                                            right: 30,
+                                            left: 10,
+                                            bottom: 20,
+                                        }}
+                                    >
+                                        <XAxis
+                                            dataKey="month"
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={{ fill: "var(--text)" }}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <YAxis
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={{ fill: "var(--text)" }}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <Tooltip />
+
+                                        {yearlyItems.map((item) => (
+                                            <Bar 
+                                                key={item.id}
+                                                dataKey={item.id}
+                                                name={item.name}
+                                                stackId="donations"
+                                                fill={item.color}
+                                            />
+                                        ))}
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </containerWithTabs>
+                        )}
                     </div>
-                </container>
+                    {/* LEGEND */}
+                    <container className="w-[160px] p-6">
+                        <div className="flex flex-col gap-4 w-full">
+                            {yearlyItems.map((item) => (
+                                <div key={item.id} className="flex gap-3">
+                                    <legendicon
+                                        style={{ backgroundColor: item.color }}
+                                    />
+                                    <div className="flex-1 text-left"> {item.name} </div> 
+                                </div>
+                            ))}
+                        </div>
+                    </container>
+                </div>
             </div>
-            <container className="p-4">
-                <tab> Yearly Donation Trend </tab>
-                <ResponsiveContainer className="chart" width="100%" height={400}>
-                    <BarChart data={barChartData}>
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-
-                        {yearlyItems.map((item) => (
-                            <Bar 
-                                key={item.id}
-                                dataKey={item.id}
-                                name={item.name}
-                                stackId="donations"
-                                fill={item.color}
-                            />
-                        ))}
-                    </BarChart>
-                </ResponsiveContainer>
-            </container>        
         </>
 
     )

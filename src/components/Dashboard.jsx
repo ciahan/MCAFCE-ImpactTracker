@@ -1,5 +1,4 @@
 import { useState } from "react";
-import './App.css'
 
 import {
     distributionData,
@@ -127,20 +126,20 @@ export default function Dashboard() {
             <div className="flex gap-2">
                 <container className="flex-1">
                     <div className="flex flex-col h-full p-3 gap-3">
-                        <h2 className="flex-1 flex items-center"> Number of participants </h2>
-                        <h1> {currentMonthData.participants} </h1>
+                        <div className="statistic"> {currentMonthData.participants} </div>
+                        <h2 className="flex-1 flex items-center"> Participants </h2>
                     </div>
                 </container>
                 <container className="flex-1">
                     <div className="flex flex-col h-full p-3 gap-3">
+                        <div className="statistic"> {currentMonthData.students} </div>
                         <h2 className="flex-1 flex items-center"> Number of students </h2>
-                        <h1> {currentMonthData.students} </h1>
                     </div>
                 </container>
                 <container className="flex-1">
                     <div className="flex flex-col h-full p-3 gap-3">
-                        <h2 className="flex-1 flex items-center"> SSL Hours awarded to sstudents </h2>
-                        <h1> {currentMonthData.sslHours} </h1>
+                        <div className="statistic"> {currentMonthData.sslHours} </div>
+                        <h2 className="flex-1 flex items-center"> SSL Hours awarded </h2>
                     </div>
                 </container>
             </div>
