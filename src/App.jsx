@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Dashboard from './components/Dashboard'
+import MonthDashboard from './components/MonthDashboard.jsx'
+import YearDashboard from './components/YearDashboard.jsx'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 // notes:
@@ -17,7 +18,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/:year" element={<Dashboard />} />
+      <Route path="/:year" element={<YearDashboard />} />
+      <Route path="/:year/:month" element={<MonthDashboard />} />
+
       <Route
         path="/"
         element={<Navigate to="/2026" replace />}

@@ -2,6 +2,7 @@ import {
     items,
 } from "../data/data.jsx";
 
+import YearlyStatistics from "./YearlyStatistics.jsx";
 import YearlyDonationTrends from "./YearlyDonationTrends.jsx";
 import YearlyParticipationTrends from "./YearlyParticipationTrends.jsx";
 
@@ -28,23 +29,7 @@ export default function YearlyDistribution({ currentYearData }) {
 
     return (
         <>
-            <container>
-                <tab> Total Donations Recieved </tab>
-            </container>
-            <div className="flex gap-2">
-                {yearlyItems
-                    .slice(0, 4)
-                    .map((item) => (
-                        <container className="flex-1 p-3" key={item.id}>
-                            <div className="flex flex-col gap-2">
-                                <div className="statistic"> {item.totalNum} </div>
-                                <h2 className="flex-1"> {item.name} </h2>
-                            </div>
-                        </container>
-                    ))
-                }
-            </div>
-
+            <YearlyStatistics yearlyItems={yearlyItems} />
             <YearlyDonationTrends currentYearData={currentYearData} yearlyItems={yearlyItems}/>
             <YearlyParticipationTrends currentYearData={currentYearData} yearlyItems={yearlyItems} />
         </>

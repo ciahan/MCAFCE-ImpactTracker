@@ -6,9 +6,8 @@ import {
 } from "../data/data.jsx";
 
 import YearlyDistribution from "./YearlyDistribution.jsx";
-import MonthDistribution from "./MonthDistribution.jsx";
 
-export default function Dashboard() {
+export default function YearDashboard() {
     const { year } = useParams();
     const navigate = useNavigate();
 
@@ -78,38 +77,24 @@ export default function Dashboard() {
             </div>
 
             <YearlyDistribution currentYearData={currentYearData} />
-
-            {/* TOGGLE MONTH */}
-            <div className="flex items-stretch justify-center gap-2 w-full">
-                <button
-                    className="w-[100px]"
-                    onClick={goToPreviousMonth}
-                    disabled={monthIndex === 0}
-                >
-                    <span>{ "<"} </span>
-                </button>
-                <div className="buttonStyle flex-1">
-                    <div
-                        style={{
-                            fontSize: 40,
-                            fontWeight: 300
-                        }}
-                    >
-                        MDAFCE Impact Tracker
-                    </div>
-                    {`${currentMonthData.month} Distribution`}
-                </div>
-                <button
-                    className="w-[100px]"
-                    onClick={goToNextMonth}
-                    disabled={monthIndex === currentYearData.months.length - 1}
-                >
-                    <span> {">"} </span>
-                </button>
-            </div>
-
-            <MonthDistribution currentMonthData={currentMonthData} />
-
+            <button 
+                className="flex items-center justify-center"
+                style={{
+                    padding: "1.5rem"
+                }}
+                onClick={() => {
+                    const latestMonth = currentYearData.months[currentYearData.months.length - 1];
+                    navigate(`/${currentYearData.year}/${latestMonth.month}`);
+                }}
+            >
+                <span
+                    style={{
+                        fontSize: "35px"
+                    }}
+                > 
+                    See Monthly Distribution Data
+                </span>
+            </button>
         </div>
     )
 }
