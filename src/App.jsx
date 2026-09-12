@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Dashboard from './components/Dashboard'
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 // notes:
 // 1. adventist, adventist community services, shady grove adventist hospital?
@@ -9,14 +10,19 @@ import Dashboard from './components/Dashboard'
 // 4. st. camillus, st. camilla's food pantry?
 // 5. on July/August blanket notes, "21 toiletries and blankets" to Adentist Community Services, is there a separation into two statistics
 // 6. combining July/August blanket notes --> is it ok if i just list them both in July?
+// 7. make an animation for the statistics when switching between months/years, the digits change quickly to the new number
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Dashboard />
-    </>
+    <Routes>
+      <Route path="/:year" element={<Dashboard />} />
+      <Route
+        path="/"
+        element={<Navigate to="/2026" replace />}
+      />
+    </Routes>
   )
 }
 

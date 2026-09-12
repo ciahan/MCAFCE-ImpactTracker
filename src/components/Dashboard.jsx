@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
     distributionData,
@@ -8,9 +9,12 @@ import YearlyDistribution from "./YearlyDistribution.jsx";
 import MonthDistribution from "./MonthDistribution.jsx";
 
 export default function Dashboard() {
-    const [yearIndex, setYearIndex] = useState(
-        distributionData.length - 1
-    )
+    const { year } = useParams();
+    const navigate = useNavigate();
+
+    const yearIndex = distributionData.findIndex(
+        (yearData) => yearData.year === Number(year)
+    );
 
     const currentYearData = distributionData[yearIndex];
 
@@ -21,49 +25,6 @@ export default function Dashboard() {
 
     // Gets all the data from the selected month
     const currentMonthData = currentYearData.months[monthIndex];
-
-    // Select the previous year
-    const goToPreviousYear = () => {
-        const currentYear = currentYearData.year;
-        const currentMonth = currentMonthData.monthNum;
-
-        setYearIndex(yearIndex - 1);
-        const newYearData = distributionData[yearIndex - 1];
-
-        for (let i = newYearData.months.length - 1; i >= 0; i--) {
-            const newMonthData = newYearData.months[i];
-            const newMonth = newMonthData.monthNum;
-
-            if (newMonth <= currentMonth) {
-                setMonthIndex(i);
-                return;
-            }
-        }
-
-        // edge case: Jan 2026 --> ? --> Feb 2025 (in case there's no Jan in 2025 and Feb is the first entry)
-        setMonthIndex(0);
-    };
-
-    // Select the next year
-    const goToNextYear = () => {
-        const currentYear = currentYearData.year;
-        const currentMonth = currentMonthData.monthNum;
-
-        setYearIndex(yearIndex - 1);
-        const newYearData = distributionData[yearIndex + 1];
-
-        for (let i = 0; i < distributionData.months.length; i++) {
-            const newMonthData = newYearData.months[i];
-            const newMonth = newMonthData.monthNum;
-
-            if (newMonth >= currentMonth) {
-                setMonthIndex(i);
-                return;
-            }
-        }
-
-        setMonthIndex(newYearData.months.length);
-    };
 
     // Select the previous month
     const goToPreviousMonth = () => {
@@ -85,7 +46,10 @@ export default function Dashboard() {
             <div className="flex items-stretch justify-center gap-2 w-full">
                 <button
                     className="w-[100px]"
-                    onClick={goToPreviousYear}
+                    onClick={() => {
+                        const previousYear = distributionData[yearIndex - 1].year;
+                        navigate(`/${previousYear}`);
+                    }}
                     disabled={yearIndex === 0}
                 >
                     <span> {"<"} </span>
@@ -103,7 +67,10 @@ export default function Dashboard() {
                 </div>
                 <button
                     className="w-[100px]"
-                    onClick={goToNextYear}
+                    onClick={() => {
+                        const nextYear = distributionData[yearIndex + 1].year;
+                        navigate(`/${nextYear}`);
+                    }}
                     disabled={yearIndex === distributionData.length - 1}
                 >
                     <span> {">"} </span>
