@@ -44,7 +44,7 @@ export default function YearDashboard() {
             {/* TOGGLE YEAR */}
             <div className="flex items-stretch justify-center gap-2 w-full">
                 <button
-                    className="w-[100px]"
+                    className="arrow"
                     onClick={() => {
                         const previousYear = distributionData[yearIndex - 1].year;
                         navigate(`/${previousYear}`);
@@ -54,18 +54,13 @@ export default function YearDashboard() {
                     <span> {"<"} </span>
                 </button>
                 <div className="buttonStyle flex-1">
-                    <div
-                        style={{
-                            fontSize: 40,
-                            fontWeight: 300
-                        }}
-                    >
+                    <div className="buttonTitle">
                         MDAFCE Impact Tracker
                     </div>
                     {currentYearData.year}
                 </div>
                 <button
-                    className="w-[100px]"
+                    className="arrow"
                     onClick={() => {
                         const nextYear = distributionData[yearIndex + 1].year;
                         navigate(`/${nextYear}`);

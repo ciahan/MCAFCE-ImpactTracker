@@ -21,10 +21,10 @@ containerWithTabs {
 }
 
 tab {
-  padding: 0.75rem;
+  padding: clamp(0.25rem, 1.5vw, 0.75rem);
   width: 100%;
 
-  font-size: 26px;
+  font-size: clamp(10px, 5vw, 26px);
 }
 
 .chartTab {
@@ -61,10 +61,20 @@ button:not(:disabled):hover span {
 .buttonStyle {
   background: var(--light-blue);
   border-radius: 10px;
-  padding: 1rem;
+  padding: clamp(1rem, 5vw, 1rem);
 
-  font-size: 56px;
+  font-size: clamp(28px, 5vw, 56px);
   font-weight: 500;
+}
+
+.buttonTitle {
+  font-size: clamp(20px, 5vw, 50px);
+  font-weight: 300;
+}
+
+.arrow {
+  width: clamp(50px, 5vw, 100px);
+  font-size: clamp(30px, 5vw, 80px);
 }
 
 button:disabled {
