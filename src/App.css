@@ -108,3 +108,18 @@ select {
 select:focus {
   outline: none;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 9px;
+  margin-top: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-gray);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track { /* background/track of scrollbar */
+  background: transparent;
+}

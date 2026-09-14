@@ -2,7 +2,7 @@ export default function CustomLegend({ itemsSet, orientation }) {
     return (
         <>
             {orientation === "horizontal"? (
-                <div className="flex gap-12">
+                <div className="flex flex-wrap gap-x-10 gap-y-3 justify-center">
                     {itemsSet.map((item) => (
                         <div key={item.id} className="flex gap-3">
                             <legendicon

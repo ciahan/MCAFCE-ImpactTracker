@@ -3,20 +3,12 @@ import { useState } from "react";
 import {
     BarChart,
     Bar,
-    Rectangle,
-    LabelList,
     PieChart,
     Pie,
-    Sector,
-    LineChart,
-    Line,
     XAxis,
     YAxis,
-    CartesianGrid,
     Tooltip,
-    Legend,
     ResponsiveContainer,
-    Cell,
 } from "recharts";
 
 import {
@@ -66,18 +58,6 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
             organizationData[donation.item] = donation.num;
         });
         return organizationData;
-    });
-
-    const organizationItems = [];
-    currentMonthData.distributions.map((org) => {
-        org.donations.forEach((donation) => {
-            const item = items.find(
-                (item) => item.id === donation.item
-            );
-            if (item && !organizationItems.some((existingItem) => existingItem.id === item.id)) {
-                organizationItems.push(item);
-            }
-        })
     });
 
     const chartData = currentMonthData.distributions
@@ -188,7 +168,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                                 />
                                 <Tooltip content={<CustomTooltip />} />
 
-                                {organizationItems.map((item) => (
+                                {availableItems.map((item) => (
                                     <Bar 
                                         key={item.id}
                                         dataKey={item.id}
@@ -199,7 +179,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                                 ))}
                             </BarChart>
                         </ResponsiveContainer>
-                        <CustomLegend itemsSet={organizationItems} orientation="horizontal" />
+                        <CustomLegend itemsSet={availableItems} orientation="horizontal" />
                     </containerWithTabs>
                 ) : (
                     /* DISTRIBUTION OF A CERTAIN ITEM DONATED PER ORGANIZATION */
@@ -290,7 +270,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                         <Tooltip content={<CustomTooltip />}/>
                     </PieChart>
                 </ResponsiveContainer>
-                <CustomLegend itemsSet={organizationItems} orientation="horizontal" />
+                <CustomLegend itemsSet={availableItems} orientation="horizontal" />
             </container>
         </div>
     )

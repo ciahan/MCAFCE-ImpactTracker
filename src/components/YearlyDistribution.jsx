@@ -5,6 +5,7 @@ import {
 import YearlyStatistics from "./YearlyStatistics.jsx";
 import YearlyDonationTrends from "./YearlyDonationTrends.jsx";
 import YearlyParticipationTrends from "./YearlyParticipationTrends.jsx";
+import YearlyOrganizationBreakdown from "./YearlyOrganizationBreakdown.jsx";
 
 export default function YearlyDistribution({ currentYearData }) {
     // a list of only the items that show up at least once on the production list of any month
@@ -32,6 +33,7 @@ export default function YearlyDistribution({ currentYearData }) {
             <YearlyStatistics yearlyItems={yearlyItems} />
             <YearlyDonationTrends currentYearData={currentYearData} yearlyItems={yearlyItems}/>
             <YearlyParticipationTrends currentYearData={currentYearData} yearlyItems={yearlyItems} />
+            <YearlyOrganizationBreakdown currentYearData={currentYearData} />
         </>
 
     )
