@@ -68,8 +68,12 @@ body {
 
 .statistic {
   font-weight: 600;
-  font-size: 55px;
+  font-size: clamp(24px, 5vw, 55px);
   color: var(--dark-blue);
+}
+
+.statisticDescription {
+  font-size: clamp(14px, 3vw, 24px);
 }
 
 h1,

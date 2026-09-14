@@ -11,7 +11,7 @@ export default function YearlyStatistics({ yearlyItems }) {
                         <container className="flex-1 p-3" key={item.id}>
                             <div className="flex flex-col gap-2">
                                 <div className="statistic"> {item.totalNum} </div>
-                                <h2 className="flex-1"> {item.name} </h2>
+                                <div className="statisticDescription lex-1"> {item.name} </div>
                             </div>
                         </container>
                     ))
