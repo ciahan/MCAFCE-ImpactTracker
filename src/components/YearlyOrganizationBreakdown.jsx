@@ -133,7 +133,7 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
                         onClick={() => setChartType("bar")}
                         className={`chartTab ${chartType === "bar" ? "selected" : ""}`}
                     >
-                        <p> Bar Chart </p>
+                        Bar Chart
                     </button>
                     <button
                         onClick={() => setChartType("pie")}

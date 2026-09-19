@@ -84,8 +84,8 @@ tab {
 
 .chartTab {
   background: var(--light-gray);
-  font-size: 16px;
-  padding: 10px 50px 5px 50px;
+  font-size: clamp(13px, 3vw, 18px);
+  padding: clamp(7px, 1vw, 12px) clamp(20px, 5vw, 50px) clamp(5px, 1vw, 10px) clamp(20px, 5vw, 50px);
   border-radius: 10px 10px 0 0;
 }
 

@@ -74,46 +74,45 @@ export default function YearlyParticipationTrends ({ currentYearData, yearlyItem
                             <LineChart
                                 data={chartData}
                                 margin={{
-                                    top: 30,
-                                    right: 30,
+                                    top: 20,
+                                    right: 10,
                                     left: 10,
                                     bottom: 20,
                                 }}
                             >
-                                <div>
-                                    <XAxis
-                                        dataKey="month"
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <YAxis
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <CartesianGrid
-                                        stroke="var(--blue)"
-                                        strokeDasharray="6 6"
-                                    />
+                                <XAxis
+                                    dataKey="month"
+                                    axisLine={{ stroke: "var(--text)" }}
+                                    tick={{ fill: "var(--text)" }}
+                                    tickLine={{ stroke: "var(--text)" }}
+                                />
+                                <YAxis
+                                    width={25}
+                                    axisLine={{ stroke: "var(--text)" }}
+                                    tick={{ fill: "var(--text)" }}
+                                    tickLine={{ stroke: "var(--text)" }}
+                                />
+                                <CartesianGrid
+                                    stroke="var(--blue)"
+                                    strokeDasharray="6 6"
+                                />
 
-                                    <Tooltip content={<CustomTooltip />}/>
+                                <Tooltip content={<CustomTooltip />}/>
 
-                                    <Line 
-                                        key={"participants"}
-                                        type="monotone"
-                                        dataKey={"participants"}
-                                        name={"Participants"}
-                                        stroke={"var(--color-1)"}
-                                    />
-                                    <Line 
-                                        key={"students"}
-                                        type="monotone"
-                                        dataKey={"students"}
-                                        name={"Students"}
-                                        stroke={"var(--color-2)"}
-                                    />
-                                </div>
+                                <Line 
+                                    key={"participants"}
+                                    type="monotone"
+                                    dataKey={"participants"}
+                                    name={"Participants"}
+                                    stroke={"var(--color-1)"}
+                                />
+                                <Line 
+                                    key={"students"}
+                                    type="monotone"
+                                    dataKey={"students"}
+                                    name={"Students"}
+                                    stroke={"var(--color-2)"}
+                                />
                             </LineChart>
                         </ResponsiveContainer>
                         <CustomLegend itemsSet={participantInfo} orientation="horizontal" />
