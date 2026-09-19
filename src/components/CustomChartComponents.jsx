@@ -88,8 +88,6 @@ export const CustomLabelLine = ({
 };
 
 export const CustomTick = ({ x, y, payload }) => {
-    const words = payload.value.split(" ");
-
     return (
         <foreignObject
             x={x-60}
@@ -98,12 +96,10 @@ export const CustomTick = ({ x, y, payload }) => {
             height={70}
         >
             <div
-                className="flex flex-wrap gap-1 justify-center"
+                className="customTick flex flex-wrap gap-1 justify-center"
                 style={{
-                    width: "120px",
+                    width: '100%',
                     textAlign: "center",
-                    fontSize: "16px",
-                    lineHeight: "17.5px",
                     color: "var(--text)",
                     overflowWrap: "break-word",
                 }}

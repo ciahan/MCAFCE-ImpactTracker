@@ -18,10 +18,6 @@ import {
 } from "../data/data.jsx";
 
 import {
-    CustomBar,
-    CustomPieSlice,
-    CustomPieLabel,
-    CustomLabelLine,
     CustomTick,
 } from "./CustomChartComponents.jsx";
 
@@ -146,12 +142,12 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
                 {chartType === "bar" ? (
                     <containerWithTabs className="w-full p-6 flex gap-4">
                         <div className="w-full overflow-x-auto pb-3">
-                            <ResponsiveContainer className="chart" width={Math.max(distributionData.length * 140, 1000)} height={470}>
+                            <ResponsiveContainer className="chart" width={Math.max(distributionData.length * 130, 1000)} height={470}>
                                 <BarChart
                                     data={distributionData}
                                     margin={{
-                                        top: 30,
-                                        right: 30,
+                                        top: 20,
+                                        right: 10,
                                         left: 10,
                                         bottom: 40,
                                     }}
@@ -164,6 +160,7 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
                                         tickLine={{ stroke: "var(--text)" }}
                                     />
                                     <YAxis
+                                        width={25}
                                         axisLine={{ stroke: "var(--text)" }}
                                         tick={{ fill: "var(--text)" }}
                                         tickLine={{ stroke: "var(--text)" }}
@@ -187,8 +184,8 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
                 ) : (
                     /* DISTRIBUTION OF A CERTAIN ITEM DONATED PER ORGANIZATION */
                     <containerWithTabs className="w-full flex p-6 gap-4">
-                        <div className="flex gap-2 items-center">
-                            Filter by organization:
+                        <div className="organizationFilter items-center">
+                            <span> Filter by organization: </span>
                             <div className="selector">
                                 <select
                                     value={organization}
@@ -207,47 +204,58 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
                                 </select>
                             </div>
                         </div>
-                        <ResponsiveContainer className="chart" width="100%" height={435}>
-                            <LineChart
-                                data={organizationData}
-                                margin={{
-                                    top: 30,
-                                    right: 30,
-                                    left: 10,
-                                    bottom: 20,
+                        <div className="w-full overflow-x-auto">
+                            <div
+                                style={{
+                                    width: `${currentYearData.months.length * 90}px`,
+                                    minWidth: '100%'
                                 }}
                             >
-                                <div>
-                                    <XAxis
-                                        dataKey="month"
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <YAxis
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <CartesianGrid
-                                        stroke="var(--blue)"
-                                        strokeDasharray="6 6"
-                                    />
+                                <ResponsiveContainer className="chart" width='100%' height={435}>
+                                    <LineChart
+                                        data={organizationData}
+                                        margin={{
+                                            top: 30,
+                                            right: 40,
+                                            left: 10,
+                                            bottom: 15,
+                                        }}
+                                    >
+                                        <div>
+                                            <XAxis
+                                                interval={0}
+                                                dataKey="month"
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={CustomTick}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <YAxis
+                                                width={25}
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={{ fill: "var(--text)" }}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <CartesianGrid
+                                                stroke="var(--blue)"
+                                                strokeDasharray="6 6"
+                                            />
 
-                                    <Tooltip content={<CustomTooltip />}/>
+                                            <Tooltip content={<CustomTooltip />}/>
 
-                                    {yearlyOrganizationItems.map((item) => (
-                                        <Line 
-                                            key={item.id}
-                                            type="monotone"
-                                            dataKey={item.id}
-                                            name={item.name}
-                                            stroke={item.color}
-                                        />
-                                    ))}
-                                </div>
-                            </LineChart>
-                        </ResponsiveContainer>
+                                            {yearlyOrganizationItems.map((item) => (
+                                                <Line 
+                                                    key={item.id}
+                                                    type="monotone"
+                                                    dataKey={item.id}
+                                                    name={item.name}
+                                                    stroke={item.color}
+                                                />
+                                            ))}
+                                        </div>
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                         <CustomLegend itemsSet={availableItems} orientation="horizontal"/>
                     </containerWithTabs>
                 )}

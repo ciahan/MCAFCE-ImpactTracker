@@ -4,6 +4,7 @@ export const distributionData = [
         months: [
             {
                 month: "January",
+                slug: "January",
                 monthNum: 1,
 
                 participants: 43,
@@ -110,6 +111,7 @@ export const distributionData = [
             },
             {
                 month: "February",
+                slug: "February",
                 monthNum: 2,
 
                 participants: 59,
@@ -270,6 +272,7 @@ export const distributionData = [
             },
             {
                 month: "March",
+                slug: "March",
                 monthNum: 3,
 
                 participants: 58,
@@ -394,6 +397,7 @@ export const distributionData = [
             },
             {
                 month: "April",
+                slug: "April",
                 monthNum: 4,
 
                 participants: 119,
@@ -527,6 +531,7 @@ export const distributionData = [
             },
             {
                 month: "May",
+                slug: "May",
                 monthNum: 5,
 
                 participants: 52,
@@ -610,6 +615,7 @@ export const distributionData = [
             },
             {
                 month: "June",
+                slug: "June",
                 monthNum: 6,
 
                 participants: 67,
@@ -726,8 +732,9 @@ export const distributionData = [
                 ]
             },
             {
-                month: "July",
-                monthNum: 7,
+                month: "July/August",
+                slug: "July-August",
+                monthNum: 7.5,
 
                 participants: 70,
                 students: 17,
@@ -789,13 +796,122 @@ export const distributionData = [
                         ]
                     }
                 ]
+            },
+            {
+                month: "September",
+                slug: "September",
+                monthNum: 9,
+
+                participants: 64,
+                students: 17,
+                sslHours: 562.5,
+
+                production: [
+                    {
+                        item: "blankets",
+                        num: 137,
+                    },
+                    {
+                        item: "baby-hats",
+                        num: 83,
+                    },
+                    {
+                        item: "hats",
+                        num: 10,
+                    },
+                ],
+
+                distributions: [
+                    {
+                        organization: "st-camillus",
+                        donations: [
+                            {
+                                item: "blankets",
+                                num: 17,
+                            },
+                            {
+                                item: 'hats',
+                                num: 20,
+                            },
+                            {
+                                item: "socks",
+                                num: 11,
+                            },
+                        ],
+                    },
+                    {
+                        organization: "meals-on-wheels",
+                        donations: [
+                            {
+                                item: "blankets",
+                                num: 7,
+                            },
+                        ],
+                    },
+                    {
+                        organization: "dc-diaper-bank",
+                        donations: [
+                            {
+                                item: "blankets",
+                                num: 20,
+                            },
+                            {
+                                item: "hats",
+                                num: 40,
+                            },
+                        ]
+                    },
+                    {
+                        organization: "shady-grove-hospital",
+                        donations: [
+                            {
+                                item: 'blankets',
+                                num: 38,
+                            },
+                            {
+                                item: 'hats',
+                                num: 16
+                            }
+                        ]
+                    },
+                    {
+                        organization: 'gabriel-project',
+                        donations: [
+                            {
+                                item: 'blankets',
+                                num: 36,
+                            },
+                            {
+                                item: 'hats',
+                                num: 10,
+                            }
+                        ]
+                    },
+                    {
+                        organization: 'adventist',
+                        donations: [
+                            {
+                                item: 'blankets',
+                                num: 20,
+                            },
+                            {
+                                item: 'school-supplies',
+                                num: 3,
+                            },
+                            {
+                                item: 'toiletries',
+                                num: 21,
+                            },
+                        ]
+                    },
+                ]
             }        
         ],        
     }
 
 ]
 
-export const items = [ // There are curently 13 donation items
+export const items = [ // There are curently 15 donation items
     {
         id: "blankets",
         name: "Blankets",
@@ -873,7 +989,19 @@ export const items = [ // There are curently 13 donation items
         name: "Books",
         description: "",
         color: "var(--color-13)",
-    }
+    },
+    {
+        id: "school-supplies",
+        name: "Bags of School Supplies",
+        description: "",
+        color: "var(--color-14)",
+    },
+    {
+        id: "toiletries",
+        name: "Toiletries",
+        description: "",
+        color: "var(--color-15)",
+    },
 ]
 
 export const organizations = [ // There are currently a total of 10 organization

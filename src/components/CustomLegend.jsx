@@ -2,9 +2,9 @@ export default function CustomLegend({ itemsSet, orientation }) {
     return (
         <>
             {orientation === "horizontal"? (
-                <div className="flex flex-wrap gap-x-10 gap-y-3 justify-center">
+                <div className="customLegend">
                     {itemsSet.map((item) => (
-                        <div key={item.id} className="flex gap-3">
+                        <div key={item.id} className="customLegendIcon">
                             <legendicon
                                 style={{ backgroundColor: item.color }}
                             />
@@ -16,7 +16,7 @@ export default function CustomLegend({ itemsSet, orientation }) {
                 <container className="w-[160px] p-6">
                     <div className="flex flex-col gap-4">
                         {itemsSet.map((item) => (
-                            <div key={item.id} className="flex gap-3">
+                            <div key={item.id} className="customLegendIcon">
                                 <legendicon
                                     style={{ backgroundColor: item.color }}
                                 />

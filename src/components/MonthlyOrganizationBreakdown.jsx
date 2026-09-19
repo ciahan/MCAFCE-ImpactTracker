@@ -17,10 +17,10 @@ import {
 } from "../data/data.jsx";
 
 import {
-    CustomBar,
     CustomPieSlice,
     CustomPieLabel,
     CustomLabelLine,
+    CustomTick,
 } from "./CustomChartComponents.jsx";
 
 import CustomTooltip from "./CustomTooltip.jsx";
@@ -125,7 +125,9 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
 
     return (
         <div className="flex flex-col gap-2">
-            <container><tab>Organization Breakdown</tab></container>
+            <div className='header'> 
+                Organization Breakdown
+            </div>
 
             <div>
                 <div className="w-full flex justify-start">
@@ -144,54 +146,64 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                 </div>
 
                 {chartType === "bar" ? (
-                    <containerWithTabs className="w-full p-6">
-                        <ResponsiveContainer className="chart" width="100%" height={435}>
-                            <BarChart
-                                data={distributionData}
-                                margin={{
-                                    top: 30,
-                                    right: 30,
-                                    left: 10,
-                                    bottom: 20,
+                    <containerWithTabs className="w-full p-6 flex gap-5 lg:gap-8">
+                        <div className='w-full overflow-x-auto'>
+                            <div
+                                style={{
+                                    width: `${distributionData.length * 130}px`,
+                                    minWidth: '100%'
                                 }}
                             >
-                                <XAxis
-                                    dataKey="organization"
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <YAxis
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <Tooltip content={<CustomTooltip />} />
+                                <ResponsiveContainer className="chart" width="100%" height={435}>
+                                    <BarChart
+                                        data={distributionData}
+                                        margin={{
+                                            top: 10,
+                                            right: 10,
+                                            left: 10,
+                                            bottom: 40,
+                                        }}
+                                    >
+                                        <XAxis
+                                            interval={0}
+                                            dataKey="organization"
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={CustomTick}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <YAxis
+                                            width={25}
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={{ fill: "var(--text)" }}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <Tooltip content={<CustomTooltip />} />
 
-                                {availableItems.map((item) => (
-                                    <Bar 
-                                        key={item.id}
-                                        dataKey={item.id}
-                                        name={item.name}
-                                        stackId="donations"
-                                        fill={item.color}
-                                    />
-                                ))}
-                            </BarChart>
-                        </ResponsiveContainer>
+                                        {availableItems.map((item) => (
+                                            <Bar 
+                                                key={item.id}
+                                                dataKey={item.id}
+                                                name={item.name}
+                                                stackId="donations"
+                                                fill={item.color}
+                                            />
+                                        ))}
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                         <CustomLegend itemsSet={availableItems} orientation="horizontal" />
                     </containerWithTabs>
                 ) : (
                     /* DISTRIBUTION OF A CERTAIN ITEM DONATED PER ORGANIZATION */
                     <containerWithTabs
                         className="p-6"
-                        style={{ width: "100%", height: "450px" }}
                     >
                         <div className="flex gap-2 items-center">
                             Filter by item:
                             <div className="selector">
                                 <select
-                                    value={item.id}
+                                    value={item}
                                     onChange={(e) => {
                                         setItem(e.target.value);
                                     }}
@@ -202,7 +214,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                                     {availableItems.map((item) => (
                                         <option
                                             key={item.id}
-                                            value={item}
+                                            value={item.id}
                                         >
                                             {item.name}
                                         </option>
@@ -210,7 +222,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                                 </select>
                             </div>
                         </div>
-                        <ResponsiveContainer>
+                        <ResponsiveContainer width="100%" height={350}>
                             <PieChart>
                                 <Pie
                                     data={chartData}
@@ -232,8 +244,11 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                 )}
             </div>
 
-            <container className="p-6">
-                <div className="flex gap-2 items-center">
+            <container 
+                className='w-full'
+                style={{ padding: '24px' }}
+            >
+                <div className="organizationFilter items-center">
                     Filter by organization:
                     <div className="selector">
                         <select

@@ -16,7 +16,7 @@ export default function MonthDashboard () {
     );
 
     const monthIndex = currentYearData.months.findIndex(
-        (monthData) => monthData.month === month
+        (monthData) => monthData.slug === month
     );
 
     const currentMonthData = currentYearData.months[monthIndex];
@@ -24,41 +24,34 @@ export default function MonthDashboard () {
     const goToPreviousMonth = () => {
         if (monthIndex > 0) {
             const previousMonth = currentYearData.months[monthIndex - 1];
-            navigate(`/${currentYearData.year}/${previousMonth.month}`)
+            navigate(`/${currentYearData.year}/${previousMonth.slug}`)
         }
     };
 
     const goToNextMonth = () => {
         if (monthIndex < currentYearData.months.length - 1) {
             const nextMonth = currentYearData.months[monthIndex + 1];
-            navigate(`/${currentYearData.year}/${nextMonth.month}`);
+            navigate(`/${currentYearData.year}/${nextMonth.slug}`);
         }
     };
 
     return (
         <div className="p-3 flex flex-col gap-2">
             <button 
-                className="flex items-center justify-center"
-                style={{
-                    padding: "1.5rem"
-                }}
+                className="bigButton"
                 onClick={() => {
                     navigate(`/${currentYearData.year}`);
                 }}
             >
-                <span
-                    style={{
-                        fontSize: "35px"
-                    }}
-                > 
+                <span> 
                     Back to Yearly Dashboard
                 </span>
             </button>
 
             {/* TOGGLE MONTH */}
-            <div className="flex items-stretch justify-center gap-2 w-full">
+            <div className="dashboardButtons">
                 <button
-                    className="w-[100px]"
+                    className="arrow"
                     onClick={goToPreviousMonth}
                     disabled={monthIndex === 0}
                 >
@@ -66,17 +59,16 @@ export default function MonthDashboard () {
                 </button>
                 <div className="buttonStyle flex-1">
                     <div
-                        style={{
-                            fontSize: 40,
-                            fontWeight: 300
-                        }}
+                        className="buttonTitle"
                     >
                         MDAFCE Impact Tracker
                     </div>
-                    {`${currentMonthData.month} Distribution`}
+                    <div className="buttonSubTitle">
+                        {currentMonthData.month}
+                    </div>
                 </div>
                 <button
-                    className="w-[100px]"
+                    className="arrow"
                     onClick={goToNextMonth}
                     disabled={monthIndex === currentYearData.months.length - 1}
                 >

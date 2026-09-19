@@ -55,7 +55,7 @@ export default function YearDashboard() {
                 </button>
                 <div className="buttonStyle flex-1">
                     <div className="buttonTitle">
-                        MDAFCE Impact Tracker
+                        MCAFCE Impact Tracker
                     </div>
                     {currentYearData.year}
                 </div>
@@ -74,18 +74,13 @@ export default function YearDashboard() {
             <YearlyDistribution currentYearData={currentYearData} />
             <button 
                 className="flex items-center justify-center"
-                style={{
-                    padding: "1.5rem"
-                }}
                 onClick={() => {
                     const latestMonth = currentYearData.months[currentYearData.months.length - 1];
-                    navigate(`/${currentYearData.year}/${latestMonth.month}`);
+                    navigate(`/${currentYearData.year}/${latestMonth.slug}`);
                 }}
             >
                 <span
-                    style={{
-                        fontSize: "35px"
-                    }}
+                    className="bigButton"
                 > 
                     See Monthly Distribution Data
                 </span>

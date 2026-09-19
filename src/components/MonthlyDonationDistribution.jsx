@@ -21,6 +21,7 @@ import {
     CustomPieSlice,
     CustomPieLabel,
     CustomLabelLine,
+    CustomTick,
 } from "./CustomChartComponents.jsx";
 
 import CustomTooltip from "./CustomTooltip.jsx";
@@ -50,7 +51,9 @@ export default function MonthlyDonationDistribution ({ currentMonthData }) {
 
     return (
         <div className="flex flex-col gap-2">
-            <container><tab>Donations Recieved</tab></container>
+            <div className='header'>
+                Donations Recieved
+            </div>
             <div className="w-full">
                 <div className="w-full flex justify-start">
                     <button
@@ -68,57 +71,64 @@ export default function MonthlyDonationDistribution ({ currentMonthData }) {
                 </div>
                 {chartType === "bar" ? (
                     <containerWithTabs className="w-full p-6">
-                        <ResponsiveContainer className="chart" width="100%" height={435}>
-                            <BarChart
-                                data={chartData}
-                                margin={{
-                                    top: 30,
-                                    right: 30,
-                                    left: 10,
-                                    bottom: 20,
+                        <div className='w-full overflow-x-auto'>
+                            <div
+                                style={{
+                                    width: `${currentMonthData.production.length * 130}px`,
+                                    minWidth: '100%'
                                 }}
                             >
-                                <XAxis
-                                    dataKey="item"
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <YAxis
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
+                                <ResponsiveContainer className="chart" width="100%" height={435}>
+                                    <BarChart
+                                        data={chartData}
+                                        margin={{
+                                            top: 30,
+                                            right: 10,
+                                            left: 10,
+                                            bottom: 20,
+                                        }}
+                                    >
+                                        <XAxis
+                                            interval={0}
+                                            dataKey="item"
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={CustomTick}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <YAxis
+                                            width={25}
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={{ fill: "var(--text)" }}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
 
-                                <Bar 
-                                    dataKey="num"
-                                    shape={CustomBar}
-                                >
-                                    <LabelList 
-                                        dataKey="num"
-                                        position="top"
-                                        fill="var(--text)"
-                                        fontSize={30}
-                                        fontWeight={500}
-                                    />
-                                </Bar>
-                            </BarChart>
-                        </ResponsiveContainer>
+                                        <Bar 
+                                            dataKey="num"
+                                            shape={CustomBar}
+                                        >
+                                            <LabelList 
+                                                dataKey="num"
+                                                position="top"
+                                                fill="var(--text)"
+                                                fontSize={30}
+                                                fontWeight={500}
+                                            />
+                                        </Bar>
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                     </containerWithTabs>
                 ) : (
-                    <containerWithTabs className="w-full p-10">
-                        <CustomLegend
-                            itemsSet={monthItems}
-                            orientation="horizontal"
-                        />
+                    <containerWithTabs className="w-full p-6">
                         <ResponsiveContainer className="chart" width="100%" height={400}>
                             <PieChart
                                 data={chartData}
                                 margin={{
-                                    top: 30,
+                                    top: 0,
                                     right: 30,
-                                    left: 10,
-                                    bottom: 20,
+                                    left: 30,
+                                    bottom: 0,
                                 }}
                             >
                                 <Pie 
@@ -127,8 +137,8 @@ export default function MonthlyDonationDistribution ({ currentMonthData }) {
                                     nameKey="item"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={120}
-                                    innerRadius={60}
+                                    outerRadius='70%'
+                                    innerRadius='30%'
                                     shape={CustomPieSlice}
                                     label={CustomPieLabel}
                                     labelLine={CustomLabelLine}
@@ -136,6 +146,10 @@ export default function MonthlyDonationDistribution ({ currentMonthData }) {
                                 <Tooltip content={<CustomTooltip />} />
                             </PieChart>
                         </ResponsiveContainer>
+                        <CustomLegend
+                            itemsSet={monthItems}
+                            orientation="horizontal"
+                        />
                     </containerWithTabs>
                 )}
             </div>

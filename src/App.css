@@ -113,10 +113,18 @@ button:not(:disabled):hover span {
   transform: scale(1.2);
 }
 
+.bigButton {
+  font-size: clamp(20px, 4vw, 35px);
+}
+
 .buttonStyle {
   background: var(--light-blue);
   border-radius: 10px;
   padding: clamp(0.5rem, 2vw, 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   font-size: clamp(28px, 5vw, 56px);
   font-weight: 500;
@@ -128,8 +136,16 @@ button:not(:disabled):hover span {
   padding: 0;
 }
 
+.buttonSubTitle {
+  font-size: clamp(18px, 5.5vw, 50px);
+  font-weight: 300;
+  font-weight: 500;
+  padding: 0;
+}
+
 .arrow {
   width: clamp(50px, 10vw, 100px);
+  min-height: clamp(70px, 10vw, 100px);
   font-size: clamp(30px, 5vw, 80px);
   padding: 0.5rem;
 }
@@ -141,10 +157,24 @@ button:disabled {
 }
 
 legendIcon {
-  width: 16px;
-  height: 16px;
+  width: clamp(14px, 3vw, 16px);
+  height: clamp(14px, 3vw, 16px);
   border-radius: 6px;
   flex-shrink: 0;
+}
+
+.customLegendIcon {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  font-size: clamp(14.5px, 2vw, 17px);
+}
+
+.customLegend {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: clamp(1.5rem, 3vw, 2.5rem);
+  row-gap: clamp(0.25rem, 1vw, 0.75rem);
+  justify-content: center;
 }
 
 .selector {
@@ -158,6 +188,28 @@ legendIcon {
   border: 1px solid var(--light-gray);
   border-radius: 16px;
   padding: 16px;
+}
+
+.customTick {
+  width: clamp(100px, 10vw, 120px);
+  font-size: clamp(10px, 3vw, 16px);
+  line-height: clamp(15px, 3vw, 17.5px);
+}
+
+.organizationFilter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.organizationFilter > span {
+  white-space: nowrap;
 }
 
 .recharts-wrapper:focus, .recharts-wrapper *:focus {

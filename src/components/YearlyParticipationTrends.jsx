@@ -16,6 +16,10 @@ import {
 import CustomTooltip from "./CustomTooltip.jsx";
 import CustomLegend from "./CustomLegend.jsx";
 
+import {
+    CustomTick,
+} from "./CustomChartComponents.jsx";
+
 export default function YearlyParticipationTrends ({ currentYearData, yearlyItems }) {
     const [chartType, setChartType] = useState("participants");
 
@@ -69,95 +73,116 @@ export default function YearlyParticipationTrends ({ currentYearData, yearlyItem
                     </button>
                 </div>
                 {chartType === "participants" ? (
-                    <containerWithTabs className="w-full p-6">
-                        <ResponsiveContainer className="chart" width="100%" height={435}>
-                            <LineChart
-                                data={chartData}
-                                margin={{
-                                    top: 20,
-                                    right: 10,
-                                    left: 10,
-                                    bottom: 20,
-                                }}
+                    <containerWithTabs className="w-full p-6 flex flex-col gap-4">
+                        <div className="overflow-x-auto w-full">
+                            <div
+                                style={{
+                                    width: `${currentYearData.months.length * 90}px`,
+                                    minWidth: '100%'
+                                }}                        
                             >
-                                <XAxis
-                                    dataKey="month"
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <YAxis
-                                    width={25}
-                                    axisLine={{ stroke: "var(--text)" }}
-                                    tick={{ fill: "var(--text)" }}
-                                    tickLine={{ stroke: "var(--text)" }}
-                                />
-                                <CartesianGrid
-                                    stroke="var(--blue)"
-                                    strokeDasharray="6 6"
-                                />
+                                <ResponsiveContainer className="chart" width="100%" height={435}>
+                                    <LineChart
+                                        data={chartData}
+                                        margin={{
+                                            top: 10,
+                                            right: 40,
+                                            left: 10,
+                                            bottom: 15,
+                                        }}
+                                    >
+                                        <XAxis
+                                            interval={0}
+                                            dataKey="month"
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={CustomTick}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <YAxis
+                                            width={25}
+                                            axisLine={{ stroke: "var(--text)" }}
+                                            tick={{ fill: "var(--text)" }}
+                                            tickLine={{ stroke: "var(--text)" }}
+                                        />
+                                        <CartesianGrid
+                                            stroke="var(--blue)"
+                                            strokeDasharray="6 6"
+                                        />
 
-                                <Tooltip content={<CustomTooltip />}/>
+                                        <Tooltip content={<CustomTooltip />}/>
 
-                                <Line 
-                                    key={"participants"}
-                                    type="monotone"
-                                    dataKey={"participants"}
-                                    name={"Participants"}
-                                    stroke={"var(--color-1)"}
-                                />
-                                <Line 
-                                    key={"students"}
-                                    type="monotone"
-                                    dataKey={"students"}
-                                    name={"Students"}
-                                    stroke={"var(--color-2)"}
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
+                                        <Line 
+                                            key={"participants"}
+                                            type="monotone"
+                                            dataKey={"participants"}
+                                            name={"Participants"}
+                                            stroke={"var(--color-1)"}
+                                        />
+                                        <Line 
+                                            key={"students"}
+                                            type="monotone"
+                                            dataKey={"students"}
+                                            name={"Students"}
+                                            stroke={"var(--color-2)"}
+                                        />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                         <CustomLegend itemsSet={participantInfo} orientation="horizontal" />
                     </containerWithTabs>
                 ) : (
-                    <containerWithTabs className="w-full p-6">
-                        <ResponsiveContainer className="chart" width="100%" height={435}>
-                            <LineChart
-                                data={chartData}
-                                margin={{
-                                    top: 30,
-                                    right: 30,
-                                    left: 10,
-                                    bottom: 20,
-                                }}
+                    <containerWithTabs className="w-full p-6 flex flex-col gap-4">
+                        <div className="overflow-x-auto w-full">
+                            <div
+                                style={{
+                                    width: `${currentYearData.months.length * 90}px`,
+                                    minWidth: '100%'
+                                }}                        
                             >
-                                <div>
-                                    <XAxis
-                                        dataKey="month"
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <YAxis
-                                        axisLine={{ stroke: "var(--text)" }}
-                                        tick={{ fill: "var(--text)" }}
-                                        tickLine={{ stroke: "var(--text)" }}
-                                    />
-                                    <CartesianGrid
-                                        stroke="var(--blue)"
-                                        strokeDasharray="6 6"
-                                    />
+                                <ResponsiveContainer className="chart" width="100%" height={435}>
+                                    <LineChart
+                                        data={chartData}
+                                        margin={{
+                                            top: 10,
+                                            right: 40,
+                                            left: 10,
+                                            bottom: 15,
+                                        }}
+                                    >
+                                        <div>
+                                            <XAxis
+                                                interval={0}
+                                                dataKey="month"
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={CustomTick}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <YAxis
+                                                width={25}
+                                                axisLine={{ stroke: "var(--text)" }}
+                                                tick={{ fill: "var(--text)" }}
+                                                tickLine={{ stroke: "var(--text)" }}
+                                            />
+                                            <CartesianGrid
+                                                stroke="var(--blue)"
+                                                strokeDasharray="6 6"
+                                            />
 
-                                    <Tooltip content={<CustomTooltip />}/>
+                                            <Tooltip content={<CustomTooltip />}/>
 
-                                    <Line 
-                                        key={"sslHours"}
-                                        type="monotone"
-                                        dataKey={"sslHours"}
-                                        name={"SSL Hours"}
-                                        stroke={"var(--color-3)"}
-                                    />
-                                </div>
-                            </LineChart>
-                        </ResponsiveContainer>
+                                            <Line 
+                                                key={"sslHours"}
+                                                type="monotone"
+                                                dataKey={"sslHours"}
+                                                name={"SSL Hours"}
+                                                stroke={"var(--color-3)"}
+                                            />
+                                        </div>
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                         <CustomLegend itemsSet={sslHourInfo} orientation="horizontal" />
                     </containerWithTabs>
                 )}
