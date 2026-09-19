@@ -230,8 +230,8 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                                     nameKey="name"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={120}
-                                    innerRadius={60}
+                                    outerRadius='60%'
+                                    innerRadius='25%'
                                     shape={CustomPieSlice}
                                     label={CustomPieLabel}
                                     labelLine={CustomLabelLine}
@@ -268,7 +268,7 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                         </select>
                     </div>
                 </div>
-                <ResponsiveContainer width="100%" height={400}>
+                <ResponsiveContainer width="100%" height={350}>
                     <PieChart>
                         <Pie
                             data={organizationData}
@@ -276,8 +276,8 @@ export default function MonthlyOrganizationBreakdown ({ currentMonthData }) {
                             nameKey="name"
                             cx="50%"
                             cy="50%"
-                            outerRadius={120}
-                            innerRadius={60}
+                            outerRadius='60%'
+                            innerRadius='25%'
                             shape={CustomPieSlice}
                             label={CustomPieLabel}
                             labelLine={CustomLabelLine}

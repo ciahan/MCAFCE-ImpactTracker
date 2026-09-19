@@ -120,17 +120,9 @@ export default function MonthlyDonationDistribution ({ currentMonthData }) {
                         </div>
                     </containerWithTabs>
                 ) : (
-                    <containerWithTabs className="w-full p-6">
-                        <ResponsiveContainer className="chart" width="100%" height={400}>
-                            <PieChart
-                                data={chartData}
-                                margin={{
-                                    top: 0,
-                                    right: 30,
-                                    left: 30,
-                                    bottom: 0,
-                                }}
-                            >
+                    <containerWithTabs className="w-full p-6 flex flex-col gap-4 lg:gap-8">
+                        <ResponsiveContainer className="chart" width="100%" height={280}>
+                            <PieChart>
                                 <Pie 
                                     data={chartData}
                                     dataKey="num"
