@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/MCAFCE-ImpactTracker/"
+  base: "/MCAFCE-ImpactTracker"
 })

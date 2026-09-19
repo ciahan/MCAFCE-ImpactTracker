@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import MonthDashboard from './components/MonthDashboard.jsx'
 import YearDashboard from './components/YearDashboard.jsx'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom'
 
 // notes:
 // 1. adventist, adventist community services, shady grove adventist hospital?
@@ -13,8 +13,17 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 // 6. combining July/August blanket notes --> is it ok if i just list them both in July?
 // 7. make an animation for the statistics when switching between months/years, the digits change quickly to the new number
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
+
+    if (redirect) {
+      navigate(redirect, { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <Routes>
@@ -28,5 +37,3 @@ function App() {
     </Routes>
   )
 }
-
-export default App

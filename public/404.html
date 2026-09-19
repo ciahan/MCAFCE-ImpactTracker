@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script>
+        const path = window.location.pathname;
+        const repo = "/MCAFCE-ImpactTracker";
+
+        const route = path.startsWith(repo)
+            ? path.slice(repo.length)
+            : path;
+
+        window.location.replace(
+            repo + "/?redirect=" + encodeURIComponent(route)
+        );
+    </script>
+</head>
+
+<body></body>
+</html>
