@@ -49,9 +49,9 @@ export default function YearlyParticipationTrends ({ currentYearData, yearlyItem
 
     return (
         <div className="flex flex-col gap-2">
-            <container>
-                <tab> Yearly Participation Trends </tab>
-            </container>
+            <div className='header'>
+                Yearly Participation Trends
+            </div>
 
             <div>
                 <div className="w-full flex justify-start">

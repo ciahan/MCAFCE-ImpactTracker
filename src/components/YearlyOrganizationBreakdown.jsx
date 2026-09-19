@@ -123,7 +123,9 @@ export default function YearlyOrganizationBreakdown ({ currentYearData }) {
 
     return (
         <div className="flex flex-col gap-2">
-            <container><tab>Organization Breakdown</tab></container>
+            <div className='header'>
+                Organization Breakdown
+            </div>
 
             <div>
                 <div className="w-full flex justify-start">

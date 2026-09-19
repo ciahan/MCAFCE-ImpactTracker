@@ -40,9 +40,9 @@ export default function YearDashboard() {
     };
 
     return (
-        <div className="p-3 flex flex-col gap-2">
+        <div className="page p-3 flex flex-col gap-2">
             {/* TOGGLE YEAR */}
-            <div className="flex items-stretch justify-center gap-2 w-full">
+            <div className="dashboardButtons">
                 <button
                     className="arrow"
                     onClick={() => {

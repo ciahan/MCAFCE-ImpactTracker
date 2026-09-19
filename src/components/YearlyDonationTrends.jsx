@@ -31,9 +31,9 @@ export default function YearlyDonationTrends ({ currentYearData, yearlyItems }) 
 
     return (
         <div className="flex flex-col gap-2">
-            <container>
-                <tab> Yearly Donation Trends </tab>
-            </container>
+            <div className='header'>
+                Yearly Donation Trends
+            </div>
             <div className="flex w-full gap-2">
                 <div className="w-full">
                     <div className="w-full flex justify-start">
