@@ -17,14 +17,14 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const redirect = params.get("redirect");
+    const redirectPath = sessionStorage.getItem("redirectPath");
 
-    if (redirect) {
-      navigate(redirect, { replace: true });
+    if (redirectPath) {
+      sessionStorage.removeItem("redirectPath");
+      navigate(redirectPath, { replace: true });
     }
   }, [navigate]);
-
+  
   return (
     <Routes>
       <Route path="/:year" element={<YearDashboard />} />
