@@ -794,7 +794,33 @@ export const distributionData = [
                                 num: 5,
                             }
                         ]
-                    }
+                    },
+                    {
+                        organization: "adventist",
+                        donations: [
+                            {
+                                item: "toiletries",
+                                num: 21,
+                            },
+                            {
+                                item: "teddy-bears",
+                                num: 5,
+                            }
+                        ]
+                    },
+                    {
+                        organization: "shady-grove-hospital",
+                        donations: [
+                            {
+                                item: "blankets",
+                                num: 50,
+                            },
+                            {
+                                item: "teddy-bears",
+                                num: 5,
+                            },
+                        ],
+                    },
                 ]
             },
             {
