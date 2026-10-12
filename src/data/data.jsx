@@ -787,7 +787,7 @@ export const distributionData = [
                             },
                             {
                                 item: "baby-hats",
-                                num: 17,
+                                num: 18,
                             },
                             {
                                 item: "teddy-bears",
@@ -816,8 +816,8 @@ export const distributionData = [
                                 num: 50,
                             },
                             {
-                                item: "teddy-bears",
-                                num: 5,
+                                item: "baby-hats",
+                                num: 20,
                             },
                         ],
                     },

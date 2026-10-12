@@ -61,7 +61,7 @@ export default function MonthDashboard () {
                     <div
                         className="buttonTitle"
                     >
-                        MDAFCE Impact Tracker
+                        MCAFCE Impact Tracker
                     </div>
                     <div className="buttonSubTitle">
                         {currentMonthData.month}
